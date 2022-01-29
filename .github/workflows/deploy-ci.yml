@@ -46,16 +46,16 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: send message if Build and push Docker failed
-        if: ${{ failure() }}
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            Ошибка при сборке образа
+#      - name: send message if Build and push Docker failed
+#        if: ${{ failure() }}
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ secrets.TELEGRAM_ID }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: |
+#            Ошибка при сборке образа
 
-            ${{ steps.build-image.outputs.labels }} - ${{ steps.build-image.outcome }}
+#            ${{ steps.build-image.outputs.labels }} - ${{ steps.build-image.outcome }}
   deploy-image-on-server:
     name: Deploy new docker image on server
     runs-on: ubuntu-latest
